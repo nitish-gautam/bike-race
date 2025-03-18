@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UCI Enduro World Cup Racers</title>
+</head>
+<body>
+    <ul>
+        {% for racer in object_list %}
+            <li> {{ racer.first_name }} {{ racer.last_name }} - {{ racer.team.name }} </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
