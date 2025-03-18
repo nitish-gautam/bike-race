@@ -9,16 +9,15 @@ This project is a simplified system for managing a Mountain Bike race. It serves
 - **Qualifying Race Result**
 - **Main Race Result**
 
-## 🛠️ What You’ll Be Doing
+## 🛠️ Implemented Features
 
 - **Modeling Race Data:**  
-  Design models to represent riders, teams, qualifying times, race order, and race results.
+  Models have been designed to represent riders, teams, qualifying times, race order, and race results.
 - **Data Management:**  
-  Provide a way for privileged users to perform CRUD operations on all data via Django Admin.  
-  Create test data (via fixtures or the admin interface) and offer instructions for loading that data.
+  Privileged users can perform full CRUD operations on all data via Django Admin. Test data can be loaded via fixtures or through the admin interface as documented.
 
 - **Public Front-End:**  
-  Build a minimal front-end using Django templates for members of the public to view records and, optionally, to self-register as riders.
+ A minimal front-end built with Django templates allows members of the public to view records and, optionally, self-register as rider
 - **Race Day Functionality:**
 
   - Display qualifying results sorted fastest first.
@@ -26,11 +25,11 @@ This project is a simplified system for managing a Mountain Bike race. It serves
   - Show podium finishes (top three per age category).
 
 - **Bonus (Extra Mile):**
-  - Docker setup with a Dockerfile and docker-compose.yml.
-  - Enhanced rider profiles with photos and race history.
-  - Polished UI using Bootstrap 5 and custom CSS.
+  - Docker support is provided via a Dockerfile and docker-compose.yml for seamless deployment..
+  - Enhanced rider profiles include photos and race history for a richer user experience.
+  - The user interface is polished with Bootstrap 5 and custom CSS.
 
-> _Note: The focus is on Django and back-end architecture, so functionality is prioritized over advanced UI design._
+> _Note: This project emphasizes robust Django back-end architecture and functionality, with additional features implemented to enhance user experience._
 
 ---
 
@@ -99,6 +98,8 @@ This project is a simplified system for managing a Mountain Bike race. It serves
    ```
 
 After completing these steps, open your browser and navigate as per below to view the application.
+
+
 **Django Admin Interface:**
 http://127.0.0.1:8000/admin/
 
@@ -111,7 +112,7 @@ Access the application in your browser at:
     •	Race Start Order: http://127.0.0.1:8000/world-cup/race-start-order/
     •	Podium Finishes: http://127.0.0.1:8000/world-cup/podium/
 
-### using Docker
+### Using Docker
 
 If you prefer to run the application inside a Docker container, follow these steps:
 
@@ -121,7 +122,9 @@ If you prefer to run the application inside a Docker container, follow these ste
 docker compose up --build
 ```
 
-** Access the Application:**
+**Access the Application:**
 
-Open http://127.0.0.1:8000/ in your browser.
-Docker will use the same SQLite database file (mounted via volumes), so data remains consistent between local and Docker environments.
+Open http://127.0.0.1:8000/ in your browser. 
+
+> _Note: Docker will use the same SQLite database file (mounted via volumes), so data remains consistent between local and Docker environments.._
+
