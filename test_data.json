@@ -1,0 +1,68 @@
+[
+  {
+    "model": "world_cup.team",
+    "pk": 1,
+    "fields": {
+      "name": "ManchesterCity"
+    }
+  },
+  {
+    "model": "world_cup.team",
+    "pk": 2,
+    "fields": {
+      "name": "LeicesterCity"
+    }
+  },
+  {
+    "model": "world_cup.rider",
+    "pk": 1,
+    "fields": {
+      "first_name": "John",
+      "last_name": "Cena",
+      "team": 1,
+      "age": 23
+    }
+  },
+  {
+    "model": "world_cup.rider",
+    "pk": 2,
+    "fields": {
+      "first_name": "Tom",
+      "last_name": "Fury",
+      "team": 2,
+      "age": 15
+    }
+  },
+  {
+    "model": "world_cup.qualifyingraceresult",
+    "pk": 1,
+    "fields": {
+      "rider": 1,
+      "qualifying_time": "00:05:30"
+    }
+  },
+  {
+    "model": "world_cup.qualifyingraceresult",
+    "pk": 2,
+    "fields": {
+      "rider": 2,
+      "qualifying_time": "00:08:23"
+    }
+  },
+  {
+    "model": "world_cup.mainraceresult",
+    "pk": 1,
+    "fields": {
+      "rider": 1,
+      "finish_time": "00:04:45"
+    }
+  },
+  {
+    "model": "world_cup.mainraceresult",
+    "pk": 2,
+    "fields": {
+      "rider": 2,
+      "finish_time": "00:05:55"
+    }
+  }
+]

@@ -1,177 +1,127 @@
-# Tech Test: UCI Enduro World Cup Race Management
+# UCI Enduro World Cup Race Management
 
 ## 🎯 Objective
-You’re building a simplified system for managing a Mountain Bike race.
-Think of it as the digital nerve center for organizing the event—minus the mud, 
-crashes, and mid-race mechanicals.
 
-The race format is as follows:
+This project is a simplified system for managing a Mountain Bike race. It serves as the digital nerve center for organizing the event—minus the mud, crashes, and mid-race mechanicals. In this system, each **Rider** races for a **Team** in a given age bracket, and the following data is stored:
 
-Each Rider races for a team in a given age bracket
-
-You will need to store data regarding the following:
-* Rider
-* Team
-* Qualifying Race Result
-* Main Race Result
+- **Rider**
+- **Team**
+- **Qualifying Race Result**
+- **Main Race Result**
 
 ## 🛠️ What You’ll Be Doing
-* Modeling race data – riders, teams, qualifying times, race order and race results.
-* Adding a way for privileged users to CRUD all data.
-* Creating a way for members of the public to add themselves as riders.
-* Displaying riders, teams and results – create a simple front end to make sure members of the public can see who’s
-  racing and repping each squad and what their results are.
-* Generating race-day rider start order – unlike other types of competition in this race the fastest qualifiers
-  start the main race last!
 
-The focus is on Django and back-end architecture, so we’re not expecting a full-blown UI masterpiece.
-Just something functional to show off your work.
+- **Modeling Race Data:**  
+  Design models to represent riders, teams, qualifying times, race order, and race results.
+- **Data Management:**  
+  Provide a way for privileged users to perform CRUD operations on all data via Django Admin.  
+  Create test data (via fixtures or the admin interface) and offer instructions for loading that data.
 
+- **Public Front-End:**  
+  Build a minimal front-end using Django templates for members of the public to view records and, optionally, to self-register as riders.
+- **Race Day Functionality:**
+
+  - Display qualifying results sorted fastest first.
+  - Generate the main race start order (slowest qualifier starts first).
+  - Show podium finishes (top three per age category).
+
+- **Bonus (Extra Mile):**
+  - Docker setup with a Dockerfile and docker-compose.yml.
+  - Enhanced rider profiles with photos and race history.
+  - Polished UI using Bootstrap 5 and custom CSS.
+
+> _Note: The focus is on Django and back-end architecture, so functionality is prioritized over advanced UI design._
+
+---
 
 ## 🚀 Getting Started
-* Set up your virtual environment however you're comfortable.
-  
-> Note: Minimum python version required is 3.10.0
-* Install requirements 
-  ```bash
-    pip install -r requirements.txt
-  ```
-* Run initial migrations
-  >Note: A couple of models have been provided,
-  >feel free to modify these as you wish. You will need to add more.
 
-Now, let's get into it...
-  
-## Tasks:
+### Prerequisites
 
-### 📝 Task 0 - Boilerplate
-Create a sensible schema to model the problem, create some test data and a way to get it into the database and then
-create a way for privileged users to edit the data (Django Admin is fine).
+- **Python:** 3.10.0 or higher
+- **Django:** As specified in `requirements.txt` (e.g., Django 5.x)
+- **SQLite:** Used as the default database
+- **Docker:** (Optional) If you prefer containerized deployment
 
-### 🚵 Task 1 - Build the Rider Roster
-Alright, time to get some teams on the board! Your first challenge is to display rider and team information in a
-way that makes sense.
+### Setting Up the Virtual Environment
 
-#### 🏁 Part A - The Lineup
-Create a page that lists all riders, grouped by:
+1. **Clone the Repository:**
 
-* Age category
-  * You decide the brackets—something like ‘Under 12’, ‘Junior’, ‘Senior’ would make sense.
-* Team affiliation.
+   ```bash
+   git clone <repository_url>
+   cd bike-race
+   python -m venv venv
+   # On macOS/Linux:
+   source venv/bin/activate
+   # On Windows:
+   venv\Scripts\activate
 
-#### 🔍 Part B - Filter the Field
-Make it easy to drill down into the details. Add a way to search and filter riders by (at least):
-* Name(s)
-* Team
-* Age category
+   ```
 
-There’s no single “right” way to do this—the approach is up to you. 
-Pick whatever patterns and design choices make sense, and show us how you’d tackle it. 🚀
+2. **Install Dependencies:**
 
-The only thing required is that it must be viewable on a webpage.
+   ```bash
+   pip install -r requirements.txt
 
+   ```
 
-### 🏁 Task 2 - Race Day
+3. **Run Migrations:**
+   Generate and apply the database migrations:
 
-Now that we’ve got our teams, let’s figure out who’s dropping in first on race day. 
-Your job is to generate the official race start order based on riders qualifying times.
+   ```bash
+   python manage.py makemigrations
+   python manage.py migrate
 
-Before each race, each racer will run the course once and the time they complete it in will be
-used as their qualifying time. This is used to determine the race order for the main race, as each
-racer will ride the course sequentially, not all at the same time.
+   ```
 
-#### ⏱️ Part A - Qualifying Results
-Each rider gets one qualifying race time to keep it simple, no multi-stage madness.
-Store these times and make sure they’re tied to the correct rider.
-We need a page to view these times, which should be sorted fastest first by default.
+4. **Load Test Data:**
+   A sample fixture file (test_data.json) is provided to load test data. To load the data into your SQLite database, run:
 
-#### 🚦 Part B - Race Day Start Order
-The fastest riders from qualifying actually race last on the big day.
-Use the sorted qualifying results to generate a race order for the main race where the slowest qualifier
-starts first and the fastest qualifier goes last.
-How you structure the logic is up to you—that’s part of the challenge.
-Show us how you’d approach it!
+   ```bash
+   python manage.py loaddata test_data.json
 
-#### 🏆 Part C - Photo Finish
-For the last part, we want to see who sent it the hardest and allow our top shredders to bask in their glory!
-Store all race results for each rider and show us a page that shows the podium (🥇1st, 🥈2nd and 🥉3rd place)
-for each age category of the race in any way you feel makes sense.
+   ```
 
----
+5. **Create a Superuser:**
+   To create an admin (superuser) account for accessing the Django Admin interface:
 
-### 🎯 Want to Go the Extra Mile? (Optional, But Impressive):
+   ```bash
+   python manage.py createsuperuser
 
-If you’re feeling ambitious, here are some bonus features that would give your solution an 
-extra layer of polish:
+   Follow the interactive prompts to set a username(admin), email(admin@example.com), and password(admin123).
 
-* 🛠️ Docker Setup 
-  * Provide a docker-compose.yml to spin up Django easily.
-  * Change the DBMS from SQLite to Postgres.
-  * Include a Dockerfile for building and running the app smoothly.
+   ```
 
-* 🏆 Extra Features 
-  * Rider profiles with photos and race history. 
-  * Style the UI and impress us with your frontend skills.
-  * Anything else that would make this feel like a proper race management tool—use your imagination!
+6. **Run the Application:**
 
----
+   ```bash
+   python manage.py runserver
+   ```
 
-## 📦 What You Need to Deliver:
+After completing these steps, open your browser and navigate as per below to view the application.
+**Django Admin Interface:**
+http://127.0.0.1:8000/admin/
 
-1. **Models**:
-   * Implement the necessary models as described.
+Access the application in your browser at:
 
-2. **Data**:
-   * Create some test data to allow us to test your features and provide a way (and instructions) for how we can
-     load it into the database.
-   * Ensure that the main race Run Order can be generated correctly based on the qualifying times.
+**Public Front-End:**
 
-3. **Basic Front-End**:
-   * Provide a minimal front-end for members of the public to view all records and to create Rider records for
-     themselves.
-   * Create a way for authenticated users to CRUD all records (using Django Admin is acceptable).
-   * The focus should be on functionality, not design.
+    •	Rider Roster: http://127.0.0.1:8000/world-cup/list-riders/
+    •	Qualifying Results: http://127.0.0.1:8000/world-cup/qualifying-results/
+    •	Race Start Order: http://127.0.0.1:8000/world-cup/race-start-order/
+    •	Podium Finishes: http://127.0.0.1:8000/world-cup/podium/
 
-4. **Instructions**:
-   * A README with steps to install, run, and use the app.
-   * If you add anything extra, make sure we know how to check it out!
+### using Docker
 
----
+If you prefer to run the application inside a Docker container, follow these steps:
 
-## ⚙️ Technical Requirements:
+**Build and run the Docker Image:**
 
-* **Django** for the back-end.
-* **SQLite** as the database.
-* Minimal front-end (basic Django templates).
+```bash
+docker compose up --build
+```
 
----
+** Access the Application:**
 
-## 🔍 How You’ll Be Evaluated:
-
-1. **Model Design** - Are the models structured well? Do they make sense for the problem?
-2. **Functionality** - Does the system correctly handle rider data, race data, and run order generation? Is the code
-   optimised in a way that it will scale well and does it minimise DB queries?
-3. **Code Quality**
-   * Is it clean, structured, and easy to follow?
-   * Is it appropriately covered with tests?
-   * Does it comply with PEP8?
-4. **Front-End** - Does it allow interaction with the data without unnecessary friction?
-
----
-
-## ⏳ Timeframe
-This is a 3-hour challenge—keep it focused and don’t overthink it.
-If anything takes longer or needs clarification, just make a note of it.
----
-
-## 📩 Submission
-Commit your code to a git repository as you go and when you’re done, send us:
-
-* The URL to your repo - we like to see the commit history.
-  * If you'd like to keep your repository private you can simply invite "t.jones" and 
-  "jamiemayer523" (as "members" not "guests", since the guest role can't see repo code) to view your Gitlab repo, or 
-  "ftstim" and "jamieb-fts" as collaborators to view your GitHub repo.
-* Instructions on how to run the project.
-* Any notes/assumptions you made along the way and any problems you encountered.
-
-Good luck—now get coding! 🚀
+Open http://127.0.0.1:8000/ in your browser.
+Docker will use the same SQLite database file (mounted via volumes), so data remains consistent between local and Docker environments.
